@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftMessages
 
 class TalkViewController: UIViewController {
 
@@ -20,24 +21,39 @@ class TalkViewController: UIViewController {
         super.viewDidLoad()
 
         navigationController?.isNavigationBarHidden = true
-        
+
         if userDefaults.object(forKey: "userName") != nil {
             userName = userDefaults.object(forKey: "userName") as! String
-            print("ユーザ名取得→→→\(userName)")
+            print("talkVC:ユーザ名取得→→→\(userName)")
         }
         
-        
-        nameLabel.frame = CGRect(x: view.frame.size.width/4, y: 20, width: view.frame.size.width/2, height: view.frame.size.height/10)
-        nameLabel.text = "\(userName)さん、こんにちは"
-        view.addSubview(nameLabel)
-        
-        
+        popupMessage()
         
         
         // Do any additional setup after loading the view.
     }
     
-
+    //ポップアップ表示
+    func popupMessage() {
+        let bodyMessage = "\(userName)さん、こんにちは。\n\nなんでも好きなことを\n話してください。\n\n"
+        let messageView = MessageView.viewFromNib(layout: .centeredView)
+        messageView.configureBackgroundView(width: 250)
+        messageView.configureContent(title: "", body: bodyMessage, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "はじめる。") { (UIButton) in
+            SwiftMessages.hide()
+        }
+        messageView.backgroundView.backgroundColor = UIColor.white
+        messageView.backgroundView.layer.cornerRadius = 10
+        
+        var config = SwiftMessages.defaultConfig
+        config.presentationStyle = .center
+        config.duration = .forever
+        config.dimMode = .blur(style: .dark, alpha: 0.7, interactive: true)
+        
+        SwiftMessages.show(config: config, view: messageView)
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

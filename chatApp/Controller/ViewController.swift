@@ -24,9 +24,10 @@ class ViewController: UIViewController {
         
         imageView.image = UIImage(named: "tulip")
         
-        titleLabel.text = "話をしましょう"
+        titleLabel.text = "話をしましょう。"
+        titleLabel.font = titleLabel.font.withSize(25)
         
-        commentLabel.text = "なんでもいいんだよ"
+        commentLabel.text = "できるだけたくさん。"
         
         loginButton.setTitle("ログイン", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
