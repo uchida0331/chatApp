@@ -16,9 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

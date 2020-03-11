@@ -215,7 +215,7 @@
                         <outlet property="headImage" destination="xr5-F8-fAH" id="QoQ-GB-gQR"/>
                         <outlet property="passwordTextField" destination="M4e-eu-aq9" id="zhy-Hh-tzR"/>
                         <outlet property="titleLabel" destination="h8x-7e-LFz" id="Fmb-ys-aCq"/>
-                        <outlet property="userNameLabel" destination="FPU-aj-7rb" id="sT7-Cd-RRu"/>
+                        <outlet property="userNameTextField" destination="FPU-aj-7rb" id="Tj4-hd-Gpj"/>
                         <segue destination="9hj-fw-fGQ" kind="show" identifier="talk" id="jA2-sb-z2f"/>
                     </connections>
                 </viewController>

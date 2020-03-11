@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var headImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,12 +22,18 @@ class LoginViewController: UIViewController {
         
         headImage.image = UIImage(named: "tulip")
         
+        //ラベル
         titleLabel.text = "Login"
         titleLabel.font = UIFont(name: "Futura", size: 30)
-        
+ 
+        //テキストフィールド
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+ 
         emailTextField.placeholder = "email"
         passwordTextField.placeholder = "password"
         
+        //ボタン
         decideButton.setTitle("", for: .normal)
         decideButton.setTitleColor(.white, for: .normal)
         decideButton.layer.backgroundColor = UIColor.lightGray.cgColor
@@ -41,14 +47,38 @@ class LoginViewController: UIViewController {
     }
     
 
-    
+    //決定ボタン
     @IBAction func decideButtonAction(_ sender: Any) {
         
-        
-        performSegue(withIdentifier: "talk", sender: nil)
+        //ユーザログイン
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
+            
+            if error != nil {
+                print("ログイン失敗")
+                print(error as Any)
+                let alert = UIAlertController(title: "ログインに失敗しました", message: "もう一度入力してください", preferredStyle: .alert)
+                let action = UIAlertAction(title: "わかりました", style: .default) { (UIAlertAction) in
+                    return
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                print("ログイン成功")
+                self.performSegue(withIdentifier: "talk", sender: nil)
+            }
+        }
     }
     
+    //キーボード設定
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     
     

@@ -24,7 +24,7 @@ class TalkViewController: UIViewController {
 
         if userDefaults.object(forKey: "userName") != nil {
             userName = userDefaults.object(forKey: "userName") as! String
-            print("talkVC:ユーザ名取得→→→\(userName)")
+            print("ユーザ名取得: \(userName)")
         }
         
         popupMessage()
@@ -35,6 +35,8 @@ class TalkViewController: UIViewController {
     
     //ポップアップ表示
     func popupMessage() {
+        
+        //内容
         let bodyMessage = "\(userName)さん、こんにちは。\n\nなんでも好きなことを\n話してください。\n\n"
         let messageView = MessageView.viewFromNib(layout: .centeredView)
         messageView.configureBackgroundView(width: 250)
@@ -44,6 +46,7 @@ class TalkViewController: UIViewController {
         messageView.backgroundView.backgroundColor = UIColor.white
         messageView.backgroundView.layer.cornerRadius = 10
         
+        //設定
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = .center
         config.duration = .forever

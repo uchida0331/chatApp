@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var headImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var userNameLabel: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var decideButton: UIButton!
@@ -24,14 +25,21 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         headImage.image = UIImage(named: "tulip")
-        
+
+        //ラベル
         titleLabel.text = "Sign up"
         titleLabel.font = UIFont(name: "Futura", size: 30)
         
-        userNameLabel.placeholder = "name"
+        //テキストフィールド
+        userNameTextField.delegate  = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        userNameTextField.placeholder = "name"
         emailTextField.placeholder = "email"
         passwordTextField.placeholder = "password"
         
+        //ボタン
         decideButton.setTitle("", for: .normal)
         decideButton.setTitleColor(.white, for: .normal)
         decideButton.layer.backgroundColor = UIColor.lightGray.cgColor
@@ -44,16 +52,44 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     //決定ボタン
     @IBAction func decideButtonAction(_ sender: Any) {
         
-        userName = userNameLabel.text!
+        userName = userNameTextField.text!
         userDefaults.set(userName, forKey: "userName")
         
-        performSegue(withIdentifier: "talk", sender: nil)
+        //ユーザ登録
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
+
+            if error != nil {
+                print("ユーザ登録失敗")
+                print(error as Any)
+                let alert = UIAlertController(title: "登録に失敗しました", message: "もう一度入力してください", preferredStyle: .alert)
+                let action = UIAlertAction(title: "わかりました", style: .default) { (UIAlertAction) in
+                    return
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                print("ユーザ登録成功")
+                self.performSegue(withIdentifier: "talk", sender: nil)
+            }
+        }
     }
 
+    //キーボード設定
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        userNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
     /*
     // MARK: - Navigation
 

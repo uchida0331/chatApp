@@ -17,6 +17,7 @@
 		AC2E816224120A4E00ED21F8 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E816124120A4E00ED21F8 /* RegisterViewController.swift */; };
 		AC2E816424120B6F00ED21F8 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E816324120B6F00ED21F8 /* TalkViewController.swift */; };
 		AC2E816624120D3100ED21F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E816524120D3100ED21F8 /* LoginViewController.swift */; };
+		AC2E819C241872CB00ED21F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC2E819B241872CB00ED21F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		AC2E816124120A4E00ED21F8 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AC2E816324120B6F00ED21F8 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		AC2E816524120D3100ED21F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AC2E819B241872CB00ED21F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				AC2E815A2412073700ED21F8 /* View */,
 				AC2E815B2412073C00ED21F8 /* Controller */,
 				AC2E81532412042000ED21F8 /* Info.plist */,
+				AC2E819B241872CB00ED21F8 /* GoogleService-Info.plist */,
 			);
 			path = chatApp;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2E81522412042000ED21F8 /* LaunchScreen.storyboard in Resources */,
+				AC2E819C241872CB00ED21F8 /* GoogleService-Info.plist in Resources */,
 				AC2E814F2412042000ED21F8 /* Assets.xcassets in Resources */,
 				AC2E814D2412041D00ED21F8 /* Main.storyboard in Resources */,
 			);
